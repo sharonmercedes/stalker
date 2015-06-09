@@ -1,5 +1,5 @@
 <xml xmlns="http://www.w3.org/1999/xhtml">
-  <block type="controls_whileUntil" id="68" inline="false" x="-32" y="-75">
+  <block type="controls_whileUntil" id="68" inline="false" x="-83" y="-131">
     <field name="MODE">UNTIL</field>
     <value name="NUMBER">
       <block type="sensor_button" id="201">
@@ -8,7 +8,7 @@
     </value>
     <statement name="DO">
       <block type="controls_if" id="91" inline="false">
-        <mutation elseif="3" else="1"></mutation>
+        <mutation elseif="4" else="1"></mutation>
         <value name="IF0">
           <block type="logic_operation" id="119" inline="true">
             <field name="OP">LAND</field>
@@ -54,6 +54,65 @@
           </block>
         </statement>
         <value name="IF1">
+          <block type="logic_operation" id="620" inline="true">
+            <field name="OP">LAND</field>
+            <value name="A">
+              <block type="logic_compare" id="621" inline="true">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="sensor_object" id="622">
+                    <field name="OBJECT">LEFTFRONT</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="623">
+                    <field name="NUM">60</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <value name="B">
+              <block type="logic_compare" id="624" inline="true">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="sensor_object" id="625">
+                    <field name="OBJECT">RIGHTFRONT</field>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="626">
+                    <field name="NUM">60</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO1">
+          <block type="movement_stop" id="629">
+            <next>
+              <block type="led_select" id="389" inline="true">
+                <field name="ACTION">FLASH</field>
+                <value name="LED">
+                  <block type="math_number" id="396">
+                    <field name="NUM">2</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="led_select" id="627" inline="true">
+                    <field name="ACTION">FLASH</field>
+                    <value name="LED">
+                      <block type="math_number" id="628">
+                        <field name="NUM">3</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+        <value name="IF2">
           <block type="logic_compare" id="432" inline="true">
             <field name="OP">LT</field>
             <value name="A">
@@ -83,11 +142,11 @@
             </value>
           </block>
         </value>
-        <statement name="DO1">
+        <statement name="DO2">
           <block type="movement_forward" id="569">
             <next>
               <block type="led_select" id="556" inline="true">
-                <field name="ACTION">ON</field>
+                <field name="ACTION">FLASH</field>
                 <value name="LED">
                   <block type="math_number" id="557">
                     <field name="NUM">0</field>
@@ -95,7 +154,7 @@
                 </value>
                 <next>
                   <block type="led_select" id="558" inline="true">
-                    <field name="ACTION">ON</field>
+                    <field name="ACTION">FLASH</field>
                     <value name="LED">
                       <block type="math_number" id="559">
                         <field name="NUM">5</field>
@@ -107,38 +166,9 @@
             </next>
           </block>
         </statement>
-        <value name="IF2">
-          <block type="logic_compare" id="323" inline="true">
-            <field name="OP">LT</field>
-            <value name="A">
-              <block type="sensor_object" id="324">
-                <field name="OBJECT">LEFTFRONT</field>
-              </block>
-            </value>
-            <value name="B">
-              <block type="sensor_object" id="326">
-                <field name="OBJECT">RIGHTFRONT</field>
-              </block>
-            </value>
-          </block>
-        </value>
-        <statement name="DO2">
-          <block type="movement_left" id="336">
-            <next>
-              <block type="led_select" id="389" inline="true">
-                <field name="ACTION">ON</field>
-                <value name="LED">
-                  <block type="math_number" id="396">
-                    <field name="NUM">4</field>
-                  </block>
-                </value>
-              </block>
-            </next>
-          </block>
-        </statement>
         <value name="IF3">
           <block type="logic_compare" id="347" inline="true">
-            <field name="OP">GT</field>
+            <field name="OP">LT</field>
             <value name="A">
               <block type="sensor_object" id="348">
                 <field name="OBJECT">LEFTFRONT</field>
@@ -152,41 +182,45 @@
           </block>
         </value>
         <statement name="DO3">
-          <block type="movement_right" id="346">
+          <block type="movement_left" id="336">
             <next>
               <block type="led_select" id="397" inline="true">
-                <field name="ACTION">ON</field>
+                <field name="ACTION">FLASH</field>
                 <value name="LED">
                   <block type="math_number" id="398">
-                    <field name="NUM">2</field>
+                    <field name="NUM">4</field>
                   </block>
                 </value>
               </block>
             </next>
           </block>
         </statement>
-        <statement name="ELSE">
-          <block type="movement_forward" id="380">
-            <next>
-              <block type="led_select" id="399" inline="true">
-                <field name="ACTION">ON</field>
-                <value name="LED">
-                  <block type="math_number" id="400">
-                    <field name="NUM">0</field>
-                  </block>
-                </value>
-                <next>
-                  <block type="led_select" id="401" inline="true">
-                    <field name="ACTION">ON</field>
-                    <value name="LED">
-                      <block type="math_number" id="402">
-                        <field name="NUM">1</field>
-                      </block>
-                    </value>
-                  </block>
-                </next>
+        <value name="IF4">
+          <block type="logic_compare" id="638" inline="true">
+            <field name="OP">GT</field>
+            <value name="A">
+              <block type="sensor_object" id="639">
+                <field name="OBJECT">LEFTFRONT</field>
               </block>
-            </next>
+            </value>
+            <value name="B">
+              <block type="sensor_object" id="640">
+                <field name="OBJECT">RIGHTFRONT</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO4">
+          <block type="movement_right" id="346"></block>
+        </statement>
+        <statement name="ELSE">
+          <block type="led_select" id="401" inline="true">
+            <field name="ACTION">FLASH</field>
+            <value name="LED">
+              <block type="math_number" id="402">
+                <field name="NUM">2</field>
+              </block>
+            </value>
           </block>
         </statement>
         <next>
